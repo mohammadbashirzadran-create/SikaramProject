@@ -24,4 +24,6 @@ Route::controller(pageController::class)->group(function () {
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard', 'index')->name('dashboard');
+
+    
 });
