@@ -8,50 +8,50 @@ class pageController extends Controller
 {
     public function index()
     {
-        return view('home');
+        return view('showpageside.home');
     }
 
     public function about()
     {
-        return view('about');
+        return view('showpageside.about');
     }
 
     public function contact()
     {
-        return view('contact');
+        return view('showpageside.contact');
     }
 
      public function services()
     {
-            return view('service');
+            return view('showpageside.services');
     }
 
     public function features()
     {
-            return view('feature');
+            return view('showpageside.features');
     }
     public function project()
     {
-            return view('project');
+            return view('showpageside.project');
     }
 
     public function team()
     {
-                return view('team');
+                return view('showpageside.team');
     }
     
     public function testimonial()
     {
-                return view('testimonial');
+                return view('showpageside.testimonial');
     }
 
     public function quote()
     {
-                return view('quote');
+                return view('showpageside.quote');
     }
 
    public function errorhandle()
     {
-                return view('404');
+                return view('showpageside.404');
     }
 }

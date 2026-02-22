@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 /*****************  Page Controller  *****************/
 use App\Http\Controllers\pageController;
 
-
+/*****************  User Controller  *****************/
+use App\Http\Controllers\UserController;
 
 Route::controller(pageController::class)->group(function () {
     Route::get('/', 'index')->name('home');
@@ -19,4 +20,8 @@ Route::controller(pageController::class)->group(function () {
     Route::get('/testimonial', 'testimonial')->name('testimonial');
     Route::get('/quote', 'quote')->name('quote');
     Route::get('/404', 'errorhandle')->name('404');
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/dashboard', 'index')->name('dashboard');
 });
