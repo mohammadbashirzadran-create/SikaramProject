@@ -24,6 +24,14 @@ Route::controller(pageController::class)->group(function () {
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard', 'index')->name('dashboard');
-
-    
+    Route::get('/users', 'user')->name('users');
+    Route::get('/users/add_user', 'add_user')->name('add_user');
+    Route::get('/services', 'services')->name('services');
+    Route::get('/services/add_services', 'add_services')->name('add_services');
+    Route::get('/products', 'products')->name('products');
+    Route::get('/products/add_product', 'add_product')->name('add_product');
+    Route::get('/projects', 'projects')->name('projects');
+    Route::get('/projects/add_project', 'add_project')->name('add_project');
+    Route::get('/team', 'team')->name('team');
+    Route::get('/team/add_team', 'add_team')->name('add_team');
 });

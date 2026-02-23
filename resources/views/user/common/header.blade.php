@@ -36,15 +36,15 @@
               <ul>
                   <li class="nav-item mb-2"><a href="/dashboard" class="nav-link text-white"><i class="fa-solid fa-gauge me-2"></i> Dashboard</a></li>
 
-                  <li class="nav-item mb-2"><a href="/users" class="nav-link text-white"><i class="fa-solid fa-users me-2"></i>Users</a></li>
+                  <li class="nav-item mb-2"><a href="{{ route('users') }}" class="nav-link text-white"><i class="fa-solid fa-users me-2"></i>Users</a></li>
  
-                  <li class="nav-item mb-2"><a href="/services" class="nav-link text-white"><i class="fa-solid fa-screwdriver-wrench me-2"></i> Services</a></li>
+                  <li class="nav-item mb-2"><a href="{{ route('services') }}" class="nav-link text-white"><i class="fa-solid fa-screwdriver-wrench me-2"></i> Services</a></li>
 
-                  <li class="nav-item mb-2"><a href="/products" class="nav-link text-white"><i class="fa-solid fa-box me-2"></i> Products</a></li>
+                  <li class="nav-item mb-2"><a href="{{ route('products') }}" class="nav-link text-white"><i class="fa-solid fa-box me-2"></i> Products</a></li>
 
-                  <li class="nav-item mb-2"><a href="/projects" class="nav-link text-white"><i class="fa-solid fa-solar-panel me-2"></i> Projects</a></li>
+                  <li class="nav-item mb-2"><a href="{{ route('projects') }}" class="nav-link text-white"><i class="fa-solid fa-solar-panel me-2"></i> Projects</a></li>
 
-                   <li class="nav-item mb-2"><a href="/team" class="nav-link text-white"><i class="fa-solid fa-user-tie me-2"></i> Team</a></li>
+                   <li class="nav-item mb-2"><a href="{{ route('team') }}" class="nav-link text-white"><i class="fa-solid fa-user-tie me-2"></i> Team</a></li>
 
                     <li class="nav-item mb-2"><a href="/testimonials" class="nav-link text-white"><i class="fa-solid fa-star me-2"></i> Testimonials</a></li>
   
@@ -66,7 +66,8 @@
 
          </div>
 
-           <div class="flex-grow-1 p-4">
-                <h2>Welcome to Dashboard</h2>
-                <p>Your content goes here...</p>
+          <div class="col-md-10 py-3">
+         <div class="p-4">  
+
+
     
