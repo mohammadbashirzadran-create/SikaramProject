@@ -53,10 +53,10 @@
                    <li class="nav-item mb-2"><a href="{{ route('contacts') }}" class="nav-link text-white">
                    <i class="fa-solid fa-envelope me-2"></i> Contacts</a></li>
 
-                   <li class="nav-item mb-2"><a href="" class="nav-link text-white">
+                   <li class="nav-item mb-2"><a href="{{ route('site_setting') }}" class="nav-link text-white">
                    <i class="fa-solid fa-gear me-2"></i>Site Setting</a></li>
 
-                   <li class="nav-item mb-2"><a href="" class="nav-link text-white"><i class="fa-solid fa-user me-2"></i>Profile</a></li>
+                   <li class="nav-item mb-2"><a href="{{ route('profile') }}" class="nav-link text-white"><i class="fa-solid fa-user me-2"></i>Profile</a></li>
 
                   <li class="nav-item mt-4"><a href="/logout" class="nav-link text-danger">
                   <i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>

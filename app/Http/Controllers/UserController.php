@@ -87,4 +87,12 @@ class UserController extends Controller
 
         return view('user.contact');
     }
+
+    public function profile(){
+        return view('user.profile');
+    }
+
+    public function site_setting(){
+        return view('user.site_setting');
+    }
 }

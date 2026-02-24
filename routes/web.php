@@ -39,4 +39,6 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/quotes', 'quotes')->name('quotes');
     Route::get('/quotes/add_quotes', 'add_quotes')->name('add_quotes');
     Route::get('/contact', 'contact')->name('contacts');
+    Route::get('/profile', 'profile')->name('profile');
+    Route::get('/site_setting', 'site_setting')->name('site_setting');
 });
