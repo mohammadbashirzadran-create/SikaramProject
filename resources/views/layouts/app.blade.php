@@ -79,7 +79,7 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
                 <a href="{{ route('about')}}" class="nav-item nav-link  {{ request()->routeIs('about') ? 'active' : '' }}">About</a>
-                <a href="{{ route('service') }}" class="nav-item nav-link {{ request()->routeIs('service') ? 'active' : '' }}">Service</a>
+                <a href="{{ route('services') }}" class="nav-item nav-link {{ request()->routeIs('service') ? 'active' : '' }}">Service</a>
                 <a href="{{ route('project') }}" class="nav-item nav-link {{ request()->routeIs('project') ? 'active' : '' }}">Project</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('feature', 'quote', 'team', 'testimonial') ? 'active' : '' }}" data-bs-toggle="dropdown">Pages</a>
@@ -91,7 +91,7 @@
                         <a href="{{ route('404') }}" class="dropdown-item">404 Page</a>
                     </div>
                 </div>
-                <a href="{{ route('contact') }}" class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
+                <a href="{{ route('contacts') }}" class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
             </div>
             <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">
                    Login/Create <i class="fa-solid fa-right-to-bracket ms-3"></i>

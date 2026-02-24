@@ -13,7 +13,7 @@ Route::controller(pageController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
-    Route::get('/services', 'services')->name('service');
+    Route::get('/services', 'services')->name('services');
     Route::get('/features', 'features')->name('feature');
     Route::get('/project', 'project')->name('project');
     Route::get('/team', 'team')->name('team');
@@ -34,4 +34,9 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/projects/add_project', 'add_project')->name('add_project');
     Route::get('/team', 'team')->name('team');
     Route::get('/team/add_team', 'add_team')->name('add_team');
+    Route::get('/testimonials', 'testimonials')->name('testimonials');
+    Route::get('/testimonials/add_testimonials', 'add_testimonials')->name('add_testimonials');
+    Route::get('/quotes', 'quotes')->name('quotes');
+    Route::get('/quotes/add_quotes', 'add_quotes')->name('add_quotes');
+    Route::get('/contact', 'contact')->name('contacts');
 });

@@ -23,7 +23,7 @@
                <img src="{{ asset('img/about.jpg') }}" alt="">
                <div class="text-center">
                 <em class="text-primary m-0 mt-3"><h6>Bashir</h6></em>
-                <p class="m-0">('Admin')</p>
+                <p class="m-0">(Admin)</p>
                </div>
             </div>
           
@@ -46,13 +46,17 @@
 
                    <li class="nav-item mb-2"><a href="{{ route('team') }}" class="nav-link text-white"><i class="fa-solid fa-user-tie me-2"></i> Team</a></li>
 
-                    <li class="nav-item mb-2"><a href="/testimonials" class="nav-link text-white"><i class="fa-solid fa-star me-2"></i> Testimonials</a></li>
+                    <li class="nav-item mb-2"><a href="{{ route('testimonials') }}" class="nav-link text-white"><i class="fa-solid fa-star me-2"></i> Testimonials</a></li>
   
-                   <li class="nav-item mb-2"><a href="/quotes" class="nav-link text-white"><i class="fa-solid fa-file-invoice me-2"></i> Quotes</a></li>
+                   <li class="nav-item mb-2"><a href="{{ route('quotes') }}" class="nav-link text-white"><i class="fa-solid fa-file-invoice me-2"></i> Quotes</a></li>
 
-                   <li class="nav-item mb-2"><a href="/contacts" class="nav-link text-white">
-                    <i class="fa-solid fa-envelope me-2"></i> Contacts</a></li>
+                   <li class="nav-item mb-2"><a href="{{ route('contacts') }}" class="nav-link text-white">
+                   <i class="fa-solid fa-envelope me-2"></i> Contacts</a></li>
 
+                   <li class="nav-item mb-2"><a href="" class="nav-link text-white">
+                   <i class="fa-solid fa-gear me-2"></i>Site Setting</a></li>
+
+                   <li class="nav-item mb-2"><a href="" class="nav-link text-white"><i class="fa-solid fa-user me-2"></i>Profile</a></li>
 
                   <li class="nav-item mt-4"><a href="/logout" class="nav-link text-danger">
                   <i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>

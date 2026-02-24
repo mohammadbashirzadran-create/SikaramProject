@@ -62,4 +62,29 @@ class UserController extends Controller
 
         return view('user.add_team');
     }
+
+    public function testimonials(){
+
+        return view('user.testimonials');
+    }
+
+    public function add_testimonials(){
+
+        return view('user.add_testimonials');
+    }
+
+    public function quotes(){
+
+        return view('user.quotes');
+    }
+
+    public function add_quotes(){
+
+        return view('user.add_quotes');
+    }
+
+    public function contact(){
+
+        return view('user.contact');
+    }
 }
