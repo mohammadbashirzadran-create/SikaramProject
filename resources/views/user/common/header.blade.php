@@ -37,7 +37,9 @@
                   <li class="nav-item mb-2"><a href="/dashboard" class="nav-link text-white"><i class="fa-solid fa-gauge me-2"></i> Dashboard</a></li>
 
                   <li class="nav-item mb-2"><a href="{{ route('users') }}" class="nav-link text-white"><i class="fa-solid fa-users me-2"></i>Users</a></li>
- 
+
+                  <li class="nav-item mb-2"> <a href="{{ route('category') }}" class="nav-link text-white"><i class="fa-solid fa-tags me-2"></i>Categories</a></li>
+
                   <li class="nav-item mb-2"><a href="{{ route('services') }}" class="nav-link text-white"><i class="fa-solid fa-screwdriver-wrench me-2"></i> Services</a></li>
 
                   <li class="nav-item mb-2"><a href="{{ route('products') }}" class="nav-link text-white"><i class="fa-solid fa-box me-2"></i> Products</a></li>
@@ -58,7 +60,7 @@
 
                    <li class="nav-item mb-2"><a href="{{ route('profile') }}" class="nav-link text-white"><i class="fa-solid fa-user me-2"></i>Profile</a></li>
 
-                  <li class="nav-item mt-4"><a href="/logout" class="nav-link text-danger">
+                  <li class="nav-item mt-4"><a href="{{ route('home') }}" class="nav-link text-danger">
                   <i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
 
             </ul>

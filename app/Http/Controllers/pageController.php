@@ -54,4 +54,14 @@ class pageController extends Controller
     {
                 return view('showpageside.404');
     }
+
+    public function login()
+    {
+                return view('showpageside.login');
+    }
+
+    public function account()
+    {
+                return view('showpageside.createAccount');
+    }
 }

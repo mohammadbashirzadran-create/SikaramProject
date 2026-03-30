@@ -95,4 +95,9 @@ class UserController extends Controller
     public function site_setting(){
         return view('user.site_setting');
     }
+
+    public function category(){
+
+         return view('user.category');
+    }
 }

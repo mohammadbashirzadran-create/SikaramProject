@@ -20,10 +20,12 @@ Route::controller(pageController::class)->group(function () {
     Route::get('/testimonial', 'testimonial')->name('testimonial');
     Route::get('/quote', 'quote')->name('quote');
     Route::get('/404', 'errorhandle')->name('404');
+    Route::get('/login', 'login')->name('login');
+    Route::get('/account', 'account')->name('account');
 });
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/dashboard', 'index')->name('dashboard');
+    Route::post('/dashboard', 'index')->name('dashboard');
     Route::get('/users', 'user')->name('users');
     Route::get('/users/add_user', 'add_user')->name('add_user');
     Route::get('/services', 'services')->name('services');
@@ -41,4 +43,5 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/contact', 'contact')->name('contacts');
     Route::get('/profile', 'profile')->name('profile');
     Route::get('/site_setting', 'site_setting')->name('site_setting');
+    Route::get('/category','category')->name('category');
 });

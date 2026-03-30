@@ -70,7 +70,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index.html" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-            <h2 class="m-0 text-primary">Solartec</h2>
+            <h2 class="m-0 text-primary">Sikaram Soler Power</h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -93,13 +93,15 @@
                 </div>
                 <a href="{{ route('contacts') }}" class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
             </div>
+
             <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">
-                   Login/Create <i class="fa-solid fa-right-to-bracket ms-3"></i>
+                   Get Quote <i class="fa-solid fa-file-invoice-dollar ms-3"></i>
             </a>
+
+            <a href="{{ route('login') }}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">
+                   Login/Create <i class="fa-solid fa-right-to-bracket ms-3"></i>
+            </a> 
         </div>
-
-
-
     </nav>
     <!-- Navbar End -->
 
