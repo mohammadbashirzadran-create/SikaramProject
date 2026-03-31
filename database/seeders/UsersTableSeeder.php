@@ -13,13 +13,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::create([
-        //     'name' => 'Mohammad Bashir',
-        //     'email' => 'bashir@example.com',
-        //     'phone' => '0773655891',
-        //     'Gender' => 'Male',
-        //     'password' => bcrypt('123456'),
-        //     'role' => 'admin',
-        // ]);
+    //      User::create([
+    //     'name' => 'Mohammad Bashir zaman',
+    //     'email' => 'bashir123@example.com',
+    //     'phone' => '07736558913',
+    //     'gender' => 'male', // ✅ correct column + value
+    //     'password' => bcrypt('123456'), // or Hash::make('123456')
+    //     'role' => 'admin',
+    // ]);
     }
 }

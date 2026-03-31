@@ -5,11 +5,11 @@
         <div class="card p-5">
             <em class="text-primary"><h3>ADD USER</h3></em>
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="text" name="user_name" class="form-control mb-3" placeholder="Your Name" required>
-                <input type="email" name="user_email" class="form-control mb-3" placeholder="Your Email" required>
-                <input type="text" name="user_phone" class="form-control mb-3" placeholder="Your Phone" required>
+                <input type="text" name="name" class="form-control mb-3" placeholder="Name" required>
+                <input type="email" name="email" class="form-control mb-3" placeholder="Email" required>
+                <input type="text" name="phone" class="form-control mb-3" placeholder="Phone" required>
 
                 <select name="gender" class="form-select mb-3" required>
                     <option value="">Select Gender</option>
@@ -17,8 +17,8 @@
                     <option value="Female">Female</option>
                     <option value="Custom">Custom</option>
                 </select>
-
-                <select name="user_type" class="form-select mb-3" required>
+                
+                <select name="type" class="form-select mb-3" required>
                     <option value="">Select Role</option>
                     <option value="Admin">Admin</option>
                     <option value="User">User</option>

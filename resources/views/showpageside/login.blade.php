@@ -7,7 +7,7 @@
         <div class="col-md-6 my-5">
             <div class="card p-4 shadow mt-5">
                 <em class="text-primary"><h3>Login</h3></em>
-                <form action="{{ route('dashboard') }}" method="POST" class="mt-3">
+                <form action="{{ route('login.submit') }}" method="POST" class="mt-3">
                     @csrf
                     <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-message"></i></span>
@@ -53,7 +53,11 @@
         </script>
 
 
-
+    @if($errors->any())
+       <div class="alert alert-danger">
+          {{ $errors->first() }}
+       </div>
+    @endif
 
             </div>
         </div>

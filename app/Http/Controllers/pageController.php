@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
-class pageController extends Controller
+class PageController extends Controller
 {
     public function index()
     {
@@ -56,12 +58,47 @@ class pageController extends Controller
     }
 
     public function login()
-    {
-                return view('showpageside.login');
+    {  
+       return view('showpageside.login');
     }
+
+  public function loginSubmit(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    // Trim inputs to avoid hidden spaces
+    $email = trim($request->email);
+    $password = trim($request->password);
+
+    $user = User::where('email', $email)->first();
+
+    if ($user && Hash::check($password, $user->password)) {
+
+        // Save session
+        $request->session()->put('id', $user->id);
+        $request->session()->put('name', $user->name);
+        $request->session()->put('email', $user->email);
+        $request->session()->put('type', $user->role); 
+
+        return redirect()->route('dashboard');
+    }
+
+    $request->session()->regenerate();
+
+    return back()->withErrors(['email' => 'Invalid credentials.']);
+}
 
     public function account()
     {
                 return view('showpageside.createAccount');
     }
+
+    public function logout(Request $request)
+{
+    $request->session()->flush(); // clear all session data
+    return redirect()->route('login');
+}
 }
