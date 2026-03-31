@@ -46,5 +46,9 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/profile', 'profile')->name('profile');
     Route::get('/site_setting', 'site_setting')->name('site_setting');
     Route::get('/category','category')->name('category');
-    Route::post('/users/store', 'store')->name('users.store');
+    Route::post('/users/store', 'storeuser')->name('users.store');
+    Route::get('/users/edit/{id}', 'user_edit')->name('users.edit');
+    Route::put('/users/update/{id}', 'user_update')->name('users.update');
+    Route::delete('/users/delete/{id}', 'delete_user')->name('users.delete');
+    
 });

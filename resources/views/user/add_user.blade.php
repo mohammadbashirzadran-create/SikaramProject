@@ -13,23 +13,21 @@
 
                 <select name="gender" class="form-select mb-3" required>
                     <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Custom">Custom</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="custom">Custom</option>
                 </select>
                 
-                <select name="type" class="form-select mb-3" required>
+                <select name="role" class="form-select mb-3" required>
                     <option value="">Select Role</option>
-                    <option value="Admin">Admin</option>
-                    <option value="User">User</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
                 </select>
 
                 <input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
                 <input type="password" name="password_confirmation" class="form-control mb-3" placeholder="Confirm Password" required>
 
-                <textarea name="bio" class="form-control mb-3" cols="30" rows="7" placeholder="Your Bio"></textarea>
-
-                <input type="file"  name="user_thumbnail" class="form-control mb-3">
+                <input type="file"  name="thumbnail" class="form-control mb-3">
 
                 <button type="submit" class="btn  btn-primary">ADD</button>
             </form>
