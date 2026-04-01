@@ -7,7 +7,7 @@
         <div class="col-md-6 my-5">
             <div class="card p-4 shadow mt-5">
                 <em class="text-primary"><h3>Login</h3></em>
-                <form action="{{ route('login.submit') }}" method="POST" class="mt-3">
+                <form action="{{ route('page.login.submit') }}" method="POST" class="mt-3">
                     @csrf
                     <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-message"></i></span>
@@ -23,7 +23,7 @@
 
                 <div class="text-center">
                     <a href="" class="text-decoration-none">Forgot Password</a><br>
-                    <a href="{{ route('account') }}" class="text-decoration-none">Create Account</a>
+                    <a href="{{ route('page.account') }}" class="text-decoration-none">Create Account</a>
                 </div>
 
 

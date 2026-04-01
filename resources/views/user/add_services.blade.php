@@ -5,7 +5,7 @@
         <div class="card p-5">
             <em class="text-primary my-2"><h3>ADD SERVICE</h3></em>
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <input type="text" name="title" class="form-control mb-3" placeholder="Service Title" required>
@@ -15,6 +15,7 @@
                 <input type="file" name="image" class="form-control mb-3">
 
                 <button type="submit" class="btn btn-primary">ADD</button>
+                  <a href="{{ route('user.services') }}" class="btn  btn-primary">Back</a>
             </form>
 
             @if(session('success'))

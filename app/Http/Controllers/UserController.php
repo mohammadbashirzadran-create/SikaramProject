@@ -1,9 +1,11 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Service;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -146,15 +148,92 @@ class UserController extends Controller
     }
 
     public function services(){
+       $services = Service::all();
 
-        return view('user.service');
+        return view('user.service',compact('services'));
     }
 
-    public function add_services(){
+    public function service_edit($id){
 
+        $services= Service::findOrFail($id);
+
+        return view('user.edit_service', compact('services'));
+    }
+
+    public function user_service_update(Request $request, $id){
+
+        $services = Service::findOrFail($id);
+
+        if ($services->status == 0) {
+             return redirect()->back()->withErrors(['error' => 'Cannot update disabled service']);
+       }
+
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        
+    // Keep old image by default
+    $imageName = $services->image;
+
+    // If new image uploaded
+    if ($request->hasFile('image')) {
+
+        // delete old image
+        if ($services->image && file_exists(public_path('uploads/'.$services->image))) {
+            unlink(public_path('uploads/'.$services->image));
+        }
+
+        // upload new image
+        $file = $request->file('image');
+        $imageName = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path('uploads'), $imageName);
+    }
+
+         $data = [
+        'title' => $request->title,
+        'description' => $request->description,
+        'image' => $imageName,
+        'updated_at' => now(),
+    ];
+    $services->update($data);
+
+     return redirect()->route('user.services')->with('success', 'Service updated successfully!');
+  }
+
+    public function add_services(){
         return view('user.add_services');
     }
 
+    public function store_service(Request $request){
+
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+
+        //upload image
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $imageName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads'), $imageName);
+        }
+
+        Service::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $imageName,
+            'user_id' => session('id'),
+        ]);
+       
+
+        return redirect()->route('user.services')->with('success', 'Service created successfully!');
+    }
     public function products(){
 
         return view('user.product');
@@ -229,6 +308,14 @@ class UserController extends Controller
     $user = User::findOrFail($id);
     $user->status = !$user->status;
     $user->save();
+
+    return redirect()->back(); 
+}
+  public function toggle_service($id){
+
+    $services = Service::findOrFail($id);
+    $services->status = !$services->status;
+    $services->save();
 
     return redirect()->back(); 
   }

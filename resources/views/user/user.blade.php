@@ -45,14 +45,14 @@
 
                            <td>
                             @if($user->status == 1)
-                              <span class="text-success">Active</span>
+                              <span class="btn btn-sm btn-success">Active</span>
                             @else
-                               <span class="text-danger">Inactive</span>
+                               <span class="btn btn-sm btn-danger">Inactive</span>
                             @endif
                          </td>
                        <td>
                             @if($user->status == 1)
-                                <a href="{{ route('users.toggle', $user->id) }}" class="btn btn-sm btn-warning">
+                                <a href="{{ route('users.toggle', $user->id) }}" class="btn btn-sm btn-danger">
                                     Disable
                                 </a>
                             @else
