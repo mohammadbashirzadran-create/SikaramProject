@@ -49,6 +49,6 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/users/store', 'storeuser')->name('users.store');
     Route::get('/users/edit/{id}', 'user_edit')->name('users.edit');
     Route::put('/users/update/{id}', 'user_update')->name('users.update');
-    Route::delete('/users/delete/{id}', 'delete_user')->name('users.delete');
+    Route::get('/users/toggle/{id}', 'toggle')->name('users.toggle');
     
 });

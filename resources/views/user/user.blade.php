@@ -19,7 +19,8 @@
                     <th>Gender</th>
                     <th>Thumbnail</th>
                     <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,13 +42,25 @@
                         <td>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">Edit</a>
                         </td>
-                        <td>
-                            <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                            </form>
-                        </td>
+
+                           <td>
+                            @if($user->status == 1)
+                              <span class="text-success">Active</span>
+                            @else
+                               <span class="text-danger">Inactive</span>
+                            @endif
+                         </td>
+                       <td>
+                            @if($user->status == 1)
+                                <a href="{{ route('users.toggle', $user->id) }}" class="btn btn-sm btn-warning">
+                                    Disable
+                                </a>
+                            @else
+                                <a href="{{ route('users.toggle', $user->id) }}" class="btn btn-sm btn-success">
+                                    Enable
+                                </a>
+                            @endif
+                     </td>
                     </tr>
                 @endforeach
              

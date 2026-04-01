@@ -62,33 +62,40 @@ class PageController extends Controller
        return view('showpageside.login');
     }
 
-  public function loginSubmit(Request $request)
-{
+  public function loginSubmit(Request $request){ 
+     
     $request->validate([
         'email' => 'required|email',
         'password' => 'required',
     ]);
 
-    // Trim inputs to avoid hidden spaces
     $email = trim($request->email);
     $password = trim($request->password);
 
     $user = User::where('email', $email)->first();
 
-    if ($user && Hash::check($password, $user->password)) {
-
-        // Save session
-        $request->session()->put('id', $user->id);
-        $request->session()->put('name', $user->name);
-        $request->session()->put('email', $user->email);
-        $request->session()->put('type', $user->role); 
-
-        return redirect()->route('dashboard');
+    // User not found
+    if (!$user) {
+        return back()->withErrors(['email' => 'Invalid credentials.']);
     }
 
-    $request->session()->regenerate();
+    //User is disabled
+    if ($user->status == 0) {
+        return back()->withErrors(['email' => 'Your account is disabled']);
+    }
 
-    return back()->withErrors(['email' => 'Invalid credentials.']);
+    //Wrong password
+    if (!Hash::check($password, $user->password)) {
+        return back()->withErrors(['email' => 'Invalid credentials.']);
+    }
+
+    //Login success
+    $request->session()->put('id', $user->id);
+    $request->session()->put('name', $user->name);
+    $request->session()->put('email', $user->email);
+    $request->session()->put('type', $user->role);
+
+    return redirect()->route('dashboard');
 }
 
     public function account()

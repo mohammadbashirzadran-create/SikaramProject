@@ -33,6 +33,11 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
 
+
+        if ($user->status == 0) {
+             return redirect()->back()->withErrors(['error' => 'Cannot update disabled user']);
+       }
+
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
@@ -217,4 +222,14 @@ class UserController extends Controller
 
          return view('user.category');
     }
+
+
+    public function toggle($id){
+
+    $user = User::findOrFail($id);
+    $user->status = !$user->status;
+    $user->save();
+
+    return redirect()->back(); 
+  }
 }
