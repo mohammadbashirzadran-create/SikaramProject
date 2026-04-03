@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 // use App\Http\Controllers\UserController;
 /*****************  Page Controller  *****************/
-use App\Http\Controllers\PageController;        
+use App\Http\Controllers\PageController;
 
 /*****************  User Controller  *****************/
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoriesController;
 
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('home');
@@ -45,10 +46,16 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/contact', 'contact')->name('user.contacts');
     Route::get('/profile', 'profile')->name('profile');
     Route::get('/site_setting', 'site_setting')->name('site_setting');
-    Route::get('/category','category')->name('category');
+    // Route::get('/category','category')->name('category');
     Route::post('/users/store', 'storeuser')->name('users.store');
     Route::get('/users/edit/{id}', 'user_edit')->name('users.edit');
     Route::put('/users/update/{id}', 'user_update')->name('users.update');
     Route::get('/users/toggle/{id}', 'toggle')->name('users.toggle');
-    
+
 });
+
+//category routes
+Route::resource('categories', CategoriesController::class);
+Route::get('categories/toggle/{category}', [CategoriesController::class, 'toggle'])->name('categories.toggle');
+
+//end of category routes
