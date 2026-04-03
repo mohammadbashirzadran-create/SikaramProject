@@ -8,7 +8,6 @@ use App\Http\Controllers\PageController;
 
 /*****************  User Controller  *****************/
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CategoriesController;
 
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('home');
@@ -54,8 +53,4 @@ Route::controller(UserController::class)->group(function () {
 
 });
 
-//category routes
-Route::resource('categories', CategoriesController::class);
-Route::get('categories/toggle/{category}', [CategoriesController::class, 'toggle'])->name('categories.toggle');
 
-//end of category routes
