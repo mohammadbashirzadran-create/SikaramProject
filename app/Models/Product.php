@@ -8,7 +8,7 @@ use App\Models\Category; // <- important
 
 class Product extends Model
 {
-    protected $fillable = ['name', 'category_id', 'user_id', 'price', 'description'];
+    protected $fillable = ['name', 'category_id', 'user_id', 'price','image', 'description'];
 
 
     use HasFactory;
@@ -20,4 +20,6 @@ class Product extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    
 }

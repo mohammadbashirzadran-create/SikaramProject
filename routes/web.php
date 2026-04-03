@@ -54,5 +54,13 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/services/toggle/{id}', 'toggle_service')->name('toggle_service'); 
     Route::put('/services/update/{id}', 'user_service_update')->name('update_services'); 
     Route::post('/services/store', 'store_service')->name('services.store');
-    
+    Route::get('/category/toggle/{id}', 'toggle_category')->name('toggle_category');
+    Route::post('/category/store', 'add_category')->name('category.store');
+    Route::get('/category/edit/{id}', 'edit_category')->name('edit_category');
+    Route::put('/category/update/{id}', 'update_category')->name('update_category');
+    Route::get('/products/edit/{id}', 'product_edit')->name('edit_product');
+    Route::get('/products/toggle/{id}', 'toggle_product')->name('toggle_product');
+    Route::put('/products/update/{id}', 'update_product')->name('update_product');
+    Route::post('/products/store', 'store_product')->name('products.store');
+
 });

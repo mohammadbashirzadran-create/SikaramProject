@@ -28,7 +28,7 @@
 
                 <button {{ $services->status==0? 'disabled': '' }} class="btn btn-primary btn-sm">UPDATE</button>
 
-                <a href="{{ route('user.services') }}" class="btn btn-sm btn-primary">Back</a>
+                <a href="{{ route('services') }}" class="btn btn-sm btn-primary">Back</a>
             </form>
 
         </div>

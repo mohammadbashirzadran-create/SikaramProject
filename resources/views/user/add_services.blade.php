@@ -7,15 +7,13 @@
 
             <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-
                 <input type="text" name="title" class="form-control mb-3" placeholder="Service Title" required>
-
                 <textarea name="description" class="form-control mb-3" placeholder="Service Description"></textarea>
 
                 <input type="file" name="image" class="form-control mb-3">
 
                 <button type="submit" class="btn btn-primary">ADD</button>
-                  <a href="{{ route('user.services') }}" class="btn  btn-primary">Back</a>
+                  <a href="{{ route('services') }}" class="btn  btn-primary">Back</a>
             </form>
 
             @if(session('success'))

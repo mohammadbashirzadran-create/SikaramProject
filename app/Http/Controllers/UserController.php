@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Service;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -200,7 +202,7 @@ class UserController extends Controller
     ];
     $services->update($data);
 
-     return redirect()->route('user.services')->with('success', 'Service updated successfully!');
+     return redirect()->route('services')->with('success', 'Service updated successfully!');
   }
 
     public function add_services(){
@@ -232,17 +234,108 @@ class UserController extends Controller
         ]);
        
 
-        return redirect()->route('user.services')->with('success', 'Service created successfully!');
+        return redirect()->route('services')->with('success', 'Service created successfully!');
     }
     public function products(){
 
-        return view('user.product');
+      $products = Product::with(['user', 'category'])->get();
+
+        return view('user.product', compact('products'));
     }
 
-    public function add_product(){
+    public function add_product(Request $request){
 
-        return view('user.add_product');
+     $category = Category::all();
+
+        return view('user.add_product', compact('category'));
     }
+
+
+    public function store_product(Request $request){
+
+        $request->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'price' => 'required|numeric',
+           'description' => 'required|string',
+           'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        //upload image
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+
+           if ($file->isValid()) {
+            $imageName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads'), $imageName);
+            } else {
+                return redirect()->back()->withErrors(['image' => 'Uploaded file is not valid']);
+            }
+        }
+
+        Product::create([
+            'name' => $request->name,
+            'category_id' => $request->category,
+            'price' => $request->price,
+            'description' => $request->description,
+            'image' => $imageName,
+            'user_id' => session('id'),
+        ]);
+       
+
+        return redirect()->route('products')->with('success', 'Product created successfully!');
+    }
+
+        public function product_edit($id){
+    
+            $product = Product::findOrFail($id);
+            $category = Category::all();
+    
+            return view('user.edit_product', compact('product', 'category'));
+        }
+    
+        public function update_product(Request $request, $id){
+    
+            $product = Product::findOrFail($id);
+    
+            if ($product->status == 0){
+                return redirect()->back()->withErrors(['error' => 'Cannot update disabled product']);
+            }
+    
+            $request->validate([
+                'name' => 'required',
+                'category' => 'required',
+                'price' => 'required|numeric',
+                'description' => 'required|string',
+                'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            ]);
+
+        // Keep old image by default
+        $imageName = $product->image;
+        // If new image uploaded
+        if ($request->hasFile('image')) {
+            // delete old image
+            if ($product->image && file_exists(public_path('uploads/'.$product->image))) {
+                unlink(public_path('uploads/'.$product->image));
+            }
+            // upload new image
+            $file = $request->file('image');
+            $imageName = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('uploads'), $imageName);
+        }
+
+         $data = [
+        'name' => $request->name,
+        'category_id' => $request->category,
+        'price' => $request->price,
+        'description' => $request->description,
+        'image' => $imageName,
+        'updated_at' => now(),
+    ];
+         $product->update($data);
+        return redirect()->route('products')->with('success', 'Product updated successfully!');
+        }
 
     public function projects(){
 
@@ -299,9 +392,47 @@ class UserController extends Controller
 
     public function category(){
 
-         return view('user.category');
+       $category = DB::table('categories')->get();
+
+         return view('user.category', compact('category'));
+    }
+    
+    public function add_category(Request $request){
+         
+        $request->validate([
+            'name' => 'required|unique:categories,name',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => $request->name,
+            'status' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+         return redirect()->route('category')->with('success', 'Category created successfully!');
     }
 
+    public function edit_category($id){
+
+        $category = DB::table('categories')->where('id', $id)->first();
+
+        return view('user.edit_category', compact('category'));
+    }
+
+     public function update_category(Request $request, $id){
+
+        $request->validate([
+            'name' => 'required|unique:categories,name,' . $id,
+        ]);
+
+        DB::table('categories')->where('id', $id)->update([
+            'name' => $request->name,
+            'updated_at' => now(),
+        ]);
+
+         return redirect()->route('category')->with('success', 'Category updated successfully!');
+    }
 
     public function toggle($id){
 
@@ -318,5 +449,23 @@ class UserController extends Controller
     $services->save();
 
     return redirect()->back(); 
+  }
+
+  public function toggle_category($id){
+
+    $category = DB::table('categories')->where('id', $id)->first();
+    $newStatus = !$category->status;
+    DB::table('categories')->where('id', $id)->update(['status' => $newStatus]);
+
+    return redirect()->back(); 
+  }
+  
+  public function toggle_product($id){
+
+    $product = Product::findOrFail($id);
+    $product->status = !$product->status;
+    $product->save();
+
+    return redirect()->back();
   }
 }
