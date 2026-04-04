@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Service;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Project;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -32,7 +33,7 @@ class UserController extends Controller
 
         return view('user.user_edit', compact('user'));
     }
- 
+
     public function user_update(Request $request, $id){
 
         $user = User::findOrFail($id);
@@ -85,7 +86,7 @@ class UserController extends Controller
      return redirect()->route('users')->with('success', 'User updated successfully!');
   }
 
-    
+
     public function add_user(){
 
         return view('user.add_user');
@@ -131,7 +132,7 @@ class UserController extends Controller
             'thumbnail' => $data['thumbnail'],
             'password' => Hash::make($request->password),
         ]);
-       
+
         return redirect()->route('users')->with('success', 'User created successfully!');
     }
 
@@ -176,7 +177,7 @@ class UserController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        
+
     // Keep old image by default
     $imageName = $services->image;
 
@@ -232,7 +233,7 @@ class UserController extends Controller
             'image' => $imageName,
             'user_id' => session('id'),
         ]);
-       
+
 
         return redirect()->route('services')->with('success', 'Service created successfully!');
     }
@@ -282,27 +283,27 @@ class UserController extends Controller
             'image' => $imageName,
             'user_id' => session('id'),
         ]);
-       
+
 
         return redirect()->route('products')->with('success', 'Product created successfully!');
     }
 
         public function product_edit($id){
-    
+
             $product = Product::findOrFail($id);
             $category = Category::all();
-    
+
             return view('user.edit_product', compact('product', 'category'));
         }
-    
+
         public function update_product(Request $request, $id){
-    
+
             $product = Product::findOrFail($id);
-    
+
             if ($product->status == 0){
                 return redirect()->back()->withErrors(['error' => 'Cannot update disabled product']);
             }
-    
+
             $request->validate([
                 'name' => 'required',
                 'category' => 'required',
@@ -337,15 +338,15 @@ class UserController extends Controller
         return redirect()->route('products')->with('success', 'Product updated successfully!');
         }
 
-    public function projects(){
+    // public function projects(){
 
-        return view('user.project');
-    }
+    //     return view('user.project');
+    // }
 
-    public function add_project(){
+    // public function add_project(){
 
-        return view('user.add_project');
-    }
+    //     return view('user.add_project');
+    // }
 
     public function team(){
 
@@ -396,9 +397,9 @@ class UserController extends Controller
 
          return view('user.category', compact('category'));
     }
-    
+
     public function add_category(Request $request){
-         
+
         $request->validate([
             'name' => 'required|unique:categories,name',
         ]);
@@ -440,7 +441,7 @@ class UserController extends Controller
     $user->status = !$user->status;
     $user->save();
 
-    return redirect()->back(); 
+    return redirect()->back();
 }
   public function toggle_service($id){
 
@@ -448,7 +449,7 @@ class UserController extends Controller
     $services->status = !$services->status;
     $services->save();
 
-    return redirect()->back(); 
+    return redirect()->back();
   }
 
   public function toggle_category($id){
@@ -457,9 +458,9 @@ class UserController extends Controller
     $newStatus = !$category->status;
     DB::table('categories')->where('id', $id)->update(['status' => $newStatus]);
 
-    return redirect()->back(); 
+    return redirect()->back();
   }
-  
+
   public function toggle_product($id){
 
     $product = Product::findOrFail($id);
@@ -468,4 +469,146 @@ class UserController extends Controller
 
     return redirect()->back();
   }
+
+
+  //project  codes
+
+
+
+
+
+    // List all projects
+    public function projects() {
+        $projects = Project::latest()->get();
+        return view('user.project', compact('projects'));
+    }
+
+    // Show add project form
+    public function add_project() {
+        return view('user.add_project');
+    }
+
+    // Store new project
+    public function store_project(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'capacity' => 'required|numeric',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|max:2048',
+            'status' => 'required|boolean',
+        ]);
+
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = time() . '_' . $request->image->getClientOriginalName();
+            $request->image->move(public_path('uploads'), $imageName);
+        }
+
+        Project::create([
+
+            'title' => $request->title,
+            'location' => $request->location,
+            'capacity' => $request->capacity,
+            'description' => $request->description,
+            'image' => $imageName,
+            'status' => $request->status,
+            'user_id' => session('id'),
+        ]);
+
+        return redirect()->route('projects')->with('success', 'Project added successfully');
+    }
+
+    // Show edit form
+    public function edit_project($id) {
+        $project = Project::findOrFail($id);
+        return view('user.edit_project', compact('project'));
+    }
+
+    // Update project
+    // public function update_project(Request $request, $id) {
+    //     $project = Project::findOrFail($id);
+
+    //     $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'location' => 'required|string|max:255',
+    //         'capacity' => 'required|numeric',
+    //         'description' => 'nullable|string',
+    //         'image' => 'nullable|image|max:2048',
+    //         'status' => 'required|boolean',
+    //     ]);
+
+    //     $data = $request->only(['title', 'location', 'capacity', 'description', 'status']);
+
+    //     if($request->hasFile('image')){
+    //         if($project->image && file_exists(public_path('uploads/'.$project->image))){
+    //             unlink(public_path('uploads/'.$project->image));
+    //         }
+    //         $file = $request->file('image');
+    //         $filename = time().'_'.$file->getClientOriginalName();
+    //         $file->move(public_path('uploads'), $filename);
+    //         $data['image'] = $filename;
+    //     }
+
+    //     $project->update($data);
+
+    //     return redirect()->route('projects')->with('success', 'Project updated successfully');
+    // }
+
+    public function update_project(Request $request, $id)
+{
+    $project = Project::findOrFail($id);
+
+    // Check if project is disabled
+    if ($project->status == 0) {
+        return redirect()->back()->with('error', 'You cannot edit this project because it is disabled. Enable it first.');
+    }
+
+    $request->validate([
+        'title' => 'required|string',
+        'location' => 'required|string',
+        'capacity' => 'required|numeric',
+        'description' => 'nullable|string',
+        'image' => 'nullable|image|max:2048',
+    ]);
+
+    $data = $request->only(['title', 'location', 'capacity', 'description']);
+
+    // Handle image upload
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $filename = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path('uploads'), $filename);
+        $data['image'] = $filename;
+    }
+
+    $project->update($data);
+
+    return redirect()->route('projects')->with('success', 'Project updated successfully');
+    }
+
+    // Toggle project status
+    public function toggle_project($id){
+        $project = Project::findOrFail($id);
+        $project->status = !$project->status;
+        $project->save();
+
+        return redirect()->back()->with('success', 'Project status updated');
+    }
+
+    // Delete project
+    public function delete_project($id){
+        $project = Project::findOrFail($id);
+
+        if($project->image && file_exists(public_path('uploads/'.$project->image))){
+            unlink(public_path('uploads/'.$project->image));
+        }
+
+        $project->delete();
+
+        return redirect()->back()->with('success', 'Project deleted successfully');
+    }
 }
+  //end of project codes
+

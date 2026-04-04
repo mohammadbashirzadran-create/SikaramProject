@@ -63,10 +63,20 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/products/toggle/{id}', 'toggle_product')->name('toggle_product');
     Route::put('/products/update/{id}', 'update_product')->name('update_product');
     Route::post('/products/store', 'store_product')->name('products.store');
+    //project routes
+    Route::get('/projects', 'projects')->name('projects'); // list all projects
+    Route::get('/projects/add_project', 'add_project')->name('add_project'); // show add form
+    Route::post('/projects/store', 'store_project')->name('projects.store'); // save new project
+    Route::get('/projects/edit/{id}', 'edit_project')->name('edit_project'); // show edit form
+    Route::put('/projects/update/{id}', 'update_project')->name('update_project'); // update project
+    Route::get('/projects/toggle/{id}', 'toggle_project')->name('toggle_project'); // optional enable/disable
+    Route::delete('/projects/delete/{id}', 'delete_project')->name('delete_project'); // optional delete
+
+    //end project routes
 
 });
 
-
+Route::get('/categories', [UserController::class, 'category'])->name('categories.index');
 
 
 

@@ -49,13 +49,11 @@
                    <li class="nav-item mb-2"><a href="{{ route('team') }}" class="nav-link text-white"><i class="fa-solid fa-user-tie me-2"></i> Team</a></li>
 
                     <li class="nav-item mb-2"><a href="{{ route('testimonials') }}" class="nav-link text-white"><i class="fa-solid fa-star me-2"></i> Testimonials</a></li>
-<<<<<<< HEAD
-  
-                   <li class="nav-item mb-2"><a href="{{ route('quotes') }}" class="nav-link text-white"><i class="fa-solid fa-file-invoice me-2"></i> Quotes</a></li>
-=======
 
-                   <li class="nav-item mb-2"><a href="{{ route('user.quotes') }}" class="nav-link text-white"><i class="fa-solid fa-file-invoice me-2"></i> Quotes</a></li>
->>>>>>> 3fe1787e9c057ace4f117d4c982e7c8cbbb6621f
+
+                   <li class="nav-item mb-2"><a href="{{ route('quotes') }}" class="nav-link text-white"><i class="fa-solid fa-file-invoice me-2"></i> Quotes</a></li>
+                   
+                   {{-- <li class="nav-item mb-2"><a href="{{ route('user.quotes') }}" class="nav-link text-white"><i class="fa-solid fa-file-invoice me-2"></i> Quotes</a></li> --}}
 
                    <li class="nav-item mb-2"><a href="{{ route('contacts') }}" class="nav-link text-white">
                    <i class="fa-solid fa-envelope me-2"></i> Contacts</a></li>
