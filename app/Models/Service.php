@@ -10,4 +10,14 @@ class Service extends Model
 
     return $this->belongsTo(User::class);
   }
+
+  protected $fillable = [
+    'title',
+    'description',
+    'image',
+    'status',
+    'user_id',
+    'created_at',
+    'updated_at',
+  ];
 }

@@ -25,12 +25,12 @@ class PageController extends Controller
 
      public function services()
     {
-            return view('showpageside.services');
+            return view('showpageside.service');
     }
 
     public function features()
     {
-            return view('showpageside.features');
+            return view('showpageside.feature');
     }
     public function project()
     {
@@ -93,7 +93,7 @@ class PageController extends Controller
     $request->session()->put('id', $user->id);
     $request->session()->put('name', $user->name);
     $request->session()->put('email', $user->email);
-    $request->session()->put('type', $user->role);
+    $request->session()->put('role', $user->role);
 
     return redirect()->route('dashboard');
 }
@@ -106,6 +106,6 @@ class PageController extends Controller
     public function logout(Request $request)
 {
     $request->session()->flush(); // clear all session data
-    return redirect()->route('login');
+    return redirect()->route('page.login');
 }
 }

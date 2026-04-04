@@ -40,19 +40,24 @@
 
                   <li class="nav-item mb-2"> <a href="{{ route('categories.index') }}" class="nav-link text-white"><i class="fa-solid fa-tags me-2"></i>Categories</a></li>
 
-                  <li class="nav-item mb-2"><a href="{{ route('user.services') }}" class="nav-link text-white"><i class="fa-solid fa-screwdriver-wrench me-2"></i> Services</a></li>
+                  <li class="nav-item mb-2"><a href="{{ route('services') }}" class="nav-link text-white"><i class="fa-solid fa-screwdriver-wrench me-2"></i> Services</a></li>
 
                   <li class="nav-item mb-2"><a href="{{ route('products') }}" class="nav-link text-white"><i class="fa-solid fa-box me-2"></i> Products</a></li>
 
                   <li class="nav-item mb-2"><a href="{{ route('projects') }}" class="nav-link text-white"><i class="fa-solid fa-solar-panel me-2"></i> Projects</a></li>
 
-                   <li class="nav-item mb-2"><a href="{{ route('user.team') }}" class="nav-link text-white"><i class="fa-solid fa-user-tie me-2"></i> Team</a></li>
+                   <li class="nav-item mb-2"><a href="{{ route('team') }}" class="nav-link text-white"><i class="fa-solid fa-user-tie me-2"></i> Team</a></li>
 
                     <li class="nav-item mb-2"><a href="{{ route('testimonials') }}" class="nav-link text-white"><i class="fa-solid fa-star me-2"></i> Testimonials</a></li>
+<<<<<<< HEAD
+  
+                   <li class="nav-item mb-2"><a href="{{ route('quotes') }}" class="nav-link text-white"><i class="fa-solid fa-file-invoice me-2"></i> Quotes</a></li>
+=======
 
                    <li class="nav-item mb-2"><a href="{{ route('user.quotes') }}" class="nav-link text-white"><i class="fa-solid fa-file-invoice me-2"></i> Quotes</a></li>
+>>>>>>> 3fe1787e9c057ace4f117d4c982e7c8cbbb6621f
 
-                   <li class="nav-item mb-2"><a href="{{ route('user.contacts') }}" class="nav-link text-white">
+                   <li class="nav-item mb-2"><a href="{{ route('contacts') }}" class="nav-link text-white">
                    <i class="fa-solid fa-envelope me-2"></i> Contacts</a></li>
 
                    <li class="nav-item mb-2"><a href="{{ route('site_setting') }}" class="nav-link text-white">
@@ -60,7 +65,7 @@
 
                    <li class="nav-item mb-2"><a href="{{ route('profile') }}" class="nav-link text-white"><i class="fa-solid fa-user me-2"></i>Profile</a></li>
 
-                  <li class="nav-item mt-4"><a href="{{ route('logout') }}" class="nav-link text-danger">
+                  <li class="nav-item mt-4"><a href="{{ route('page.logout') }}" class="nav-link text-danger">
                   <i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
 
             </ul>
