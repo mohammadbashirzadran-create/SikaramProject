@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 // use App\Http\Controllers\UserController;
 /*****************  Page Controller  *****************/
-use App\Http\Controllers\PageController;        
+use App\Http\Controllers\PageController;
 
 /*****************  User Controller  *****************/
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoriesController;
 
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('page.home');
@@ -45,11 +46,12 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/admin/contact', 'contact')->name('contacts');
     Route::get('/profile', 'profile')->name('profile');
     Route::get('/site_setting', 'site_setting')->name('site_setting');
-    Route::get('/category','category')->name('category');
+    // Route::get('/category','category')->name('category');
     Route::post('/users/store', 'storeuser')->name('users.store');
     Route::get('/users/edit/{id}', 'user_edit')->name('users.edit');
     Route::put('/users/update/{id}', 'user_update')->name('users.update');
     Route::get('/users/toggle/{id}', 'toggle')->name('users.toggle');
+<<<<<<< HEAD
     Route::get('/services/edit/{id}', 'service_edit')->name('edit_services');
     Route::get('/services/toggle/{id}', 'toggle_service')->name('toggle_service'); 
     Route::put('/services/update/{id}', 'user_service_update')->name('update_services'); 
@@ -64,3 +66,13 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/products/store', 'store_product')->name('products.store');
 
 });
+=======
+
+});
+
+//category routes
+Route::resource('categories', CategoriesController::class);
+Route::get('categories/toggle/{category}', [CategoriesController::class, 'toggle'])->name('categories.toggle');
+
+//end of category routes
+>>>>>>> 3fe1787e9c057ace4f117d4c982e7c8cbbb6621f
