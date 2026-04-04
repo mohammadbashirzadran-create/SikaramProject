@@ -8,7 +8,6 @@ use App\Http\Controllers\PageController;
 
 /*****************  User Controller  *****************/
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CategoriesController;
 
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('page.home');
@@ -51,10 +50,10 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/users/edit/{id}', 'user_edit')->name('users.edit');
     Route::put('/users/update/{id}', 'user_update')->name('users.update');
     Route::get('/users/toggle/{id}', 'toggle')->name('users.toggle');
-<<<<<<< HEAD
+
     Route::get('/services/edit/{id}', 'service_edit')->name('edit_services');
-    Route::get('/services/toggle/{id}', 'toggle_service')->name('toggle_service'); 
-    Route::put('/services/update/{id}', 'user_service_update')->name('update_services'); 
+    Route::get('/services/toggle/{id}', 'toggle_service')->name('toggle_service');
+    Route::put('/services/update/{id}', 'user_service_update')->name('update_services');
     Route::post('/services/store', 'store_service')->name('services.store');
     Route::get('/category/toggle/{id}', 'toggle_category')->name('toggle_category');
     Route::post('/category/store', 'add_category')->name('category.store');
@@ -64,15 +63,21 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/products/toggle/{id}', 'toggle_product')->name('toggle_product');
     Route::put('/products/update/{id}', 'update_product')->name('update_product');
     Route::post('/products/store', 'store_product')->name('products.store');
+    //project routes
+    Route::get('/projects', 'projects')->name('projects'); // list all projects
+    Route::get('/projects/add_project', 'add_project')->name('add_project'); // show add form
+    Route::post('/projects/store', 'store_project')->name('projects.store'); // save new project
+    Route::get('/projects/edit/{id}', 'edit_project')->name('edit_project'); // show edit form
+    Route::put('/projects/update/{id}', 'update_project')->name('update_project'); // update project
+    Route::get('/projects/toggle/{id}', 'toggle_project')->name('toggle_project'); // optional enable/disable
+    Route::delete('/projects/delete/{id}', 'delete_project')->name('delete_project'); // optional delete
+
+    //end project routes
 
 });
-=======
 
-});
+Route::get('/categories', [UserController::class, 'category'])->name('categories.index');
 
-//category routes
-Route::resource('categories', CategoriesController::class);
-Route::get('categories/toggle/{category}', [CategoriesController::class, 'toggle'])->name('categories.toggle');
 
-//end of category routes
->>>>>>> 3fe1787e9c057ace4f117d4c982e7c8cbbb6621f
+
+
